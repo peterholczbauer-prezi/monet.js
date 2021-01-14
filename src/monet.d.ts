@@ -382,6 +382,7 @@ export interface List<T> extends IMonad<T>, Setoid<List<T>>, ITraversable<T>, It
   forall(fn: (e: T) => boolean): boolean;
   exists(fn: (e: T) => boolean): boolean;
   forEach(fn: (val: T) => void): void;
+  sort(compareFn?: (a: T, b: T) => boolean): List<T>;
 
   sequence<V>(m: IMaybeStatic): Maybe<List<V>>;
   sequence<E, V>(m: IEitherStatic): Either<E, List<V>>;
