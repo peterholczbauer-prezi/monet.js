@@ -579,4 +579,26 @@ describe('An immutable list', function () {
         })
     })
 
+    describe('sort(compareFn)', function() {
+        it('sorts the list in ascending order without a compare function', function () {
+            expect(List.fromArray([5, 4, 3, 2, 1, 0]).sort()).toEqual(List.fromArray([0, 1, 2, 3, 4, 5]))
+        })
+        it('sorts the list in ascending order with a numeric comparator function', function () {
+            var unsortedList = List.fromArray([5, 4, -3, 2, -1, 0])
+            var expectedSortedList = List.fromArray([-3, -1, 0, 2, 4, 5])
+            expect(unsortedList.sort((a, b) => a - b)).toEqual(expectedSortedList)
+        })
+        it('sorts the list in descending order with a numeric comparator function', function () {
+            var unsortedList = List.fromArray([5, 4, -3, 2, -1, 0])
+            var expectedSortedList = List.fromArray([5, 4, 2, 0, -1, -3])
+            expect(unsortedList.sort((a, b) => b - a)).toEqual(expectedSortedList)
+        })
+        it('will return an empty list when sorting an empty list without a compare function', function () {
+            expect(Nil.sort()).toEqual(Nil)
+        })
+        it('will return an empty list when sorting an empty list with a compare function', function () {
+            expect(Nil.sort((a, b) => a - b)).toEqual(Nil)
+        })
+    })
+
 })
