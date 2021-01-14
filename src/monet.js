@@ -464,7 +464,10 @@
         },
         inspect: function () {
             return this.toString()
-        }
+        },
+        sort: function (compareFn) {
+            return this.isNil ? Nil : List.fromArray(this.toArray().sort(compareFn))
+        },
     }
 
     List.fn.init.prototype = List.fn
